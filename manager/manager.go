@@ -23,12 +23,15 @@ func (m *Manager) ShowTasks() string {
 	return tasks
 }
 
-func (m *Manager) EditTask(_id int, _name, _description string, _status bool) {
-	m.tasks[_id].SetName(_name)
-	m.tasks[_id].SetDescription(_description)
-	m.tasks[_id].SetStatus(_status)
+func (m *Manager) ChangeStatus(_id string) {
+	m.tasks[int([]rune(_id)[0])].SetStatus(!m.tasks[int([]rune(_id)[0])].GetStatus())
 }
 
-func (m *Manager) DeleteTask(_id int) {
-	m.tasks = append(m.tasks[:_id], m.tasks[_id+1:]...)
+func (m *Manager) EditTask(_id, _name, _description string) {
+	m.tasks[int([]rune(_id)[0])].SetName(_name)
+	m.tasks[int([]rune(_id)[0])].SetDescription(_description)
+}
+
+func (m *Manager) DeleteTask(_id string) {
+	m.tasks = append(m.tasks[:int([]rune(_id)[0])], m.tasks[int([]rune(_id)[0]):]...)
 }
