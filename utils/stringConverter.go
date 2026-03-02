@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// ConvertToString - метод для конвертации динамического массива в строку
 func ConvertToString(tasks []*Task) string {
 	builder := new(strings.Builder)
 	for _, t := range tasks {
@@ -16,11 +17,4 @@ func ConvertToString(tasks []*Task) string {
 			t.GetDescription(), boolToString(t.GetStatus())))
 	}
 	return builder.String()
-}
-
-func boolToString(b bool) string {
-	if b {
-		return "да"
-	}
-	return "нет"
 }
